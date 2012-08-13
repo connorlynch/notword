@@ -1,0 +1,20 @@
+<h1>Welcome to Not Word of the Day</h1>
+
+<h2>Today, avoid using the word:</h2>
+
+<p> 
+	<%= @word %> 
+</p>
+
+<p>Instead, feel free to try:</p>
+<p>
+	<ul>
+	<% @synonyms.each do |synon| %>
+	<li><%= synon %></li>
+	<% end %>
+	</ul>
+</p>
+
+<p>
+	<%= link_to "Or try a different word", random_url %>
+</p>
