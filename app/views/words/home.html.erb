@@ -1,7 +1,7 @@
 <h2>Today, avoid using the word:</h2>
 
 <p> 
-	<%= @word %> 
+	<%= @word.spelling %> 
 </p>
 
 <p>Instead, feel free to try:</p>
@@ -12,6 +12,15 @@
 	<% end %>
 	</ul>
 </p>
+
+
+<% if session[:user_id] %>
+	<p>
+		<%= link_to "Save this word", new_fav_url(:word_id => @word.id)%>
+	</p>
+<% else %>
+	<p>Sign in to keep track of your words</p>
+<% end %>
 
 <p>
 	<%= link_to "Or try a different word", random_url %>

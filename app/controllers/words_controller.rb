@@ -10,9 +10,9 @@ class WordsController < ApplicationController
         config.api_key = 'aeacd7ec84670707e90090b08b70f65c9da2c4c4fe7808238'
     end
     
-    @word = Word.all.sample[:spelling]
+    @word = Word.all.sample
     
-    syns = Wordnik.word.get_related("#{@word}", :type => 'synonym')
+    syns = Wordnik.word.get_related("#{@word.spelling}", :type => 'synonym')
     @synonyms = syns[0]["words"].first(5)
     
   end
