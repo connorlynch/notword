@@ -1,0 +1,10 @@
+<%= @word[:spelling] %>
+
+<p>Instead, feel free to try:</p>
+<p>
+	<ul>
+	<% @synonyms.each do |synon| %>
+	<li><%= synon %></li>
+	<% end %>
+	</ul>
+</p>

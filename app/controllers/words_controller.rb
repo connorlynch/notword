@@ -10,7 +10,7 @@ class WordsController < ApplicationController
         config.api_key = 'aeacd7ec84670707e90090b08b70f65c9da2c4c4fe7808238'
     end
     
-    @word = Word.all.sample
+    @word = Word.find_all_by_curated(true).sample
     
     syns = Wordnik.word.get_related("#{@word.spelling}", :type => 'synonym')
     @synonyms = syns[0]["words"].first(5)
@@ -32,13 +32,18 @@ class WordsController < ApplicationController
     @word = w
     
     @synonyms = Wordnik.word.get_related("#{@word}", :type => 'synonym')[0]["words"].first(5)
+  end
+  
+  def show
+    %w(rubygems wordnik).each {|lib| require lib}
+
+    Wordnik.configure do |config|
+        config.api_key = 'aeacd7ec84670707e90090b08b70f65c9da2c4c4fe7808238'
+    end
     
-    # while @synonyms == nil
-    #       @word = Wordnik.words.get_random_word(:hasDictionaryDef => 'true', :includePartOfSpeech => 'noun')["word"]
-    #     end
-    #     
-    #     @synonyms = Wordnik.word.get_related("#{@word}", :type => 'synonym')
-    #     
+    @word = Word.find_by_id(params[:id])
+    syns = Wordnik.word.get_related("#{@word.spelling}", :type => 'synonym')
+    @synonyms = syns[0]["words"].first(5)
   end
   
 end

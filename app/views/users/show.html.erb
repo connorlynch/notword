@@ -5,9 +5,12 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
+<p> My Words to Avoid
+	<ul>
+		<% @user.words.each do |word| %>
+		<li><%= link_to word[:spelling], show_word_url(:id => word.id) %></li>
+		<% end %>
+	</ul>
 </p>
 
 

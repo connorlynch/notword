@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :require_login, :only => [:show, :destroy]
+  
+  def require_login
+    if session[:user_id] != params[:id].to_i
+      redirect_to root_url, :notice => "You don't have permission to access this page. Sign in to view your profile."
+    end
+  end
+  
+  
   def index
     @users = User.all
 

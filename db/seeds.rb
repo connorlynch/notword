@@ -11,5 +11,6 @@ words_to_avoid = ['awesome', 'random', 'literally', 'ridiculous', 'hate', 'love'
 words_to_avoid.each do |w|
   word = Word.new
   word.spelling = w
+  word.curated = true
   word.save
 end

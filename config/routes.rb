@@ -14,4 +14,8 @@ Notword::Application.routes.draw do
   
   get 'favorites/new' => "Favorites#new", :as => :new_fav
   
+  get 'favorites/new_rando' => "Favorites#new_rando", :as => :new_rando
+  
+  get "words/show/:id" => "Words#show", :as => :show_word
+  
 end

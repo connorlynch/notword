@@ -15,3 +15,11 @@
 	</ul>
 </p>
 
+<% if session[:user_id] %>
+	<p>
+		<%= link_to "Save this word", new_rando_url(:spelling => @word)%>
+	</p>
+<% else %>
+	<p>Sign in to keep track of your words</p>
+<% end %>
+
